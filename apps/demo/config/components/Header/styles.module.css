@@ -1,0 +1,56 @@
+.Header {
+  backdrop-filter: blur(12px);
+  background-color: color-mix(
+    in srgb,
+    var(--site-color-background) 85%,
+    transparent
+  );
+  border-bottom: 1px solid var(--site-color-border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.Header-inner {
+  align-items: center;
+  display: flex;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: 1280px;
+  padding: var(--site-space-4);
+}
+
+@media (min-width: 768px) {
+  .Header-inner {
+    padding: var(--site-space-4) var(--site-space-5);
+  }
+}
+
+.Header-logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.Header-items {
+  display: flex;
+  gap: var(--site-space-5);
+  margin-inline-start: auto;
+}
+
+@media (min-width: 1024px) {
+  .Header-items {
+    gap: 32px;
+  }
+}
+
+.HeaderItem {
+  color: var(--site-color-text-muted);
+  font-size: var(--site-text-small);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.HeaderItem--isActive {
+  color: var(--site-color-text);
+}

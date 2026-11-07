@@ -1,0 +1,60 @@
+.PuckFields {
+  position: relative;
+  font-family: var(--puck-font-family);
+}
+
+.PuckFields--isLoading {
+  min-height: 48px; /* Ensure there is sufficient room for loader if no fields */
+}
+
+.PuckFields-loadingOverlay {
+  background: var(--puck-color-surface);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: all;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+
+.PuckFields-loadingOverlayInner {
+  display: flex;
+  padding: var(--puck-space-4);
+  position: sticky;
+  top: 0;
+}
+
+.PuckFields-field * {
+  box-sizing: border-box;
+}
+
+/* Remove its box to allow for proper layout of the children. This div is used for styling direct children of the fields container as a row. */
+.PuckFields-rows {
+  display: contents;
+}
+
+.PuckFields--wrapFields .PuckFields-rows > * {
+  color: var(--puck-color-text-secondary);
+  padding: var(--puck-space-4);
+}
+
+/* Add a separator between any rows that are not the tabs markers */
+.PuckFields--wrapFields
+  .PuckFields-rows
+  > :not([data-puck-tab-marker])
+  ~ :not([data-puck-tab-marker]) {
+  border-top: var(--puck-border-width-regular) solid var(--puck-color-border);
+}
+
+/* Make any collapsible field groups toggles extend the full width and height of the row for a bigger click area */
+.PuckFields--wrapFields .PuckFields-rows > [data-puck-field-group-collapsible] {
+  padding: 0;
+  --_puck-field-group-inset-x: var(--puck-space-4);
+  --_puck-field-group-inset-top: var(--puck-space-4);
+  --_puck-field-group-inset-bottom: var(--puck-space-4);
+}

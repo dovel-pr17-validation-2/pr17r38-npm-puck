@@ -1,0 +1,54 @@
+import { ItemSelector } from "../lib/data/get-item";
+import { Viewport } from "./API";
+import { Data } from "./Data";
+
+export type ItemWithId = {
+  _arrayId: string;
+  _originalIndex: number;
+  _currentIndex: number;
+};
+
+export type ArrayState = { items: ItemWithId[]; openId: string };
+
+export type UiState = {
+  leftSideBarVisible: boolean;
+  rightSideBarVisible: boolean;
+  leftSideBarWidth?: number | null;
+  rightSideBarWidth?: number | null;
+  mobilePanelExpanded?: boolean;
+  itemSelector: ItemSelector | null;
+  arrayState: Record<string, ArrayState | undefined>;
+  previewMode: "interactive" | "edit";
+  componentList: Record<
+    string,
+    {
+      components?: string[];
+      title?: string;
+      visible?: boolean;
+      expanded?: boolean;
+    }
+  >;
+  isDragging: boolean;
+  /** Outline items whose children are shown, keyed by item id */
+  itemExpanded?: Record<string, boolean>;
+  viewports: {
+    current: {
+      width: number | "100%";
+      height: number | "auto";
+    };
+    controlsVisible: boolean;
+    options: Viewport[];
+  };
+  expandedFieldGroups: Record<string, boolean>;
+  field: { focus?: string | null; metadata?: Record<string, any> };
+  /** The selected field tab. Shows the first available tab when `null`. */
+  fieldTab?: string | number | null;
+  plugin: {
+    current: string | null;
+  };
+};
+
+export type AppState<UserData extends Data = Data> = {
+  data: UserData;
+  ui: UiState;
+};
